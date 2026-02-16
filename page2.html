@@ -1,31 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Archive</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="bg">
 
-<h1 id="title" class="logo"></h1>
-
-<div class="panel">
-
-<input id="search" placeholder="Search in this category...">
-
-<div id="filters" class="filters">
-<label><input type="checkbox" value="name" checked> Name</label>
-<label><input type="checkbox" value="desc" checked> Description</label>
+<div class="topbar">
+<span onclick="goHome()">🏠</span>
+<input id="search" placeholder="Search..." oninput="doSearch()">
 </div>
 
-</div>
-
-<div id="grid" class="grid"></div>
-
-<a href="index.html" class="back">🏠 HOME</a>
+<div id="list" class="container"></div>
 
 <script src="script.js"></script>
+<script>loadCategory()</script>
 
 </body>
 </html>
