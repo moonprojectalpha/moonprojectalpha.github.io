@@ -2,30 +2,27 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Detail</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="./style.css">
 </head>
 
 <body class="bg">
 
-<div class="topbar">
-<span onclick="goBack()">⬅</span>
-<span onclick="goHome()">🏠</span>
+<div class="top">
+<button onclick="goBack()">BACK</button>
+<button onclick="goHome()">HOME</button>
 </div>
 
-<div class="container">
+<div class="wrap">
 
-<img id="big" class="big">
+<img id="img" class="big">
 
-<div id="gallery" class="gallery"></div>
-
-<div id="text" class="text"></div>
+<div id="text" class="box"></div>
 
 </div>
 
-<script src="script.js"></script>
+<script src="./script.js"></script>
 <script>loadDetail()</script>
-
 </body>
 </html>
