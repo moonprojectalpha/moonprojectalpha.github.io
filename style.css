@@ -1,0 +1,116 @@
+body{
+  margin:0;
+  font-family:Segoe UI, sans-serif;
+  color:#243;
+  background:
+    radial-gradient(circle at 20% 10%, #ffffffaa 0 120px, transparent 130px),
+    radial-gradient(circle at 80% 20%, #ffd6f5aa 0 140px, transparent 150px),
+    linear-gradient(180deg,#f3f8ff,#fff0f7);
+}
+
+/* top header */
+header{
+  background:rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px);
+  padding:20px;
+  font-size:26px;
+  font-weight:700;
+  text-align:center;
+  box-shadow:0 4px 18px rgba(0,0,0,.05);
+}
+
+/* general container */
+main{
+  padding:40px;
+  text-align:center;
+}
+
+/* fantasy glass card */
+.card{
+  background:rgba(255,255,255,.8);
+  backdrop-filter:blur(10px);
+  border-radius:18px;
+  padding:26px;
+  box-shadow:0 15px 35px rgba(50,80,120,.12);
+  display:inline-block;
+}
+
+/* buttons */
+button{
+  margin:6px;
+  padding:12px 20px;
+  border:0;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+  background:linear-gradient(90deg,#8ec5ff,#ffb3e6);
+  color:#123;
+}
+button:hover{
+  filter:brightness(1.05);
+}
+
+/* ===== PAGE 2 GRID ===== */
+.grid{
+  margin-top:20px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:16px;
+}
+
+.item{
+  background:white;
+  border-radius:14px;
+  padding:10px;
+  box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.item img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+/* ===== PAGE 3 GALLERY ===== */
+
+.main-img{
+  width:100%;
+  max-width:650px;
+  border-radius:16px;
+  box-shadow:0 15px 30px rgba(0,0,0,.15);
+}
+
+.thumb-row{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.thumb-row img{
+  width:110px;
+  height:80px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* ===== POPUP ===== */
+.popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.7);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
+
+.popup img{
+  max-width:90%;
+  max-height:85%;
+  border-radius:14px;
+  box-shadow:0 20px 40px rgba(0,0,0,.5);
+}
