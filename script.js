@@ -1,6 +1,6 @@
 const DATA=[
 
-{type:"character",name:"Ice Queen",desc:"Frozen monarch",imgs:["https://picsum.photos/600/400?1","https://picsum.photos/600/400?11"]},
+{type:"character",name:"Ice Queen",desc:"Frozen monarch",imgs:["https://picsum.photos/600/400?1"]},
 {type:"character",name:"Blade Hero",desc:"Legend swordsman",imgs:["https://picsum.photos/600/400?2"]},
 
 {type:"area",name:"Crystal City",desc:"Shining capital",imgs:["https://picsum.photos/600/400?3"]},
@@ -24,7 +24,11 @@ if(grid){
 const params=new URLSearchParams(location.search);
 const cat=params.get("cat");
 
-document.getElementById("title").textContent=(cat||"Archive").toUpperCase();
+if(!cat){
+location.href="index.html"; // AUTO FIX BUG
+}
+
+document.getElementById("title").textContent=cat.toUpperCase();
 
 const searchInput=document.getElementById("search");
 const filters=document.getElementById("filters");
@@ -33,10 +37,7 @@ function render(){
 
 let s=searchInput.value.toLowerCase();
 
-filters.style.display = s.length>0 ? "block":"none";
-
-let fields=[...document.querySelectorAll(".filters input:checked")]
-.map(c=>c.value);
+filters.style.display=s?"block":"none";
 
 grid.innerHTML="";
 
@@ -44,20 +45,10 @@ DATA.forEach((d,i)=>{
 
 if(d.type!==cat) return;
 
-let match=false;
-
-if(!s) match=true;
-else{
-
-if(fields.includes("name") && d.name.toLowerCase().includes(s)) match=true;
-if(fields.includes("desc") && d.desc.toLowerCase().includes(s)) match=true;
-
-}
-
-if(match){
+if(!s || d.name.toLowerCase().includes(s) || d.desc.toLowerCase().includes(s)){
 
 grid.innerHTML+=`
-<div class="card" onclick="openDetail(${i})">
+<div class="card" onclick="location.href='page3.html?id=${i}'">
 <img src="${d.imgs[0]}">
 <h3>${d.name}</h3>
 <p>${d.desc}</p>
@@ -70,23 +61,15 @@ grid.innerHTML+=`
 }
 
 render();
-
 searchInput.oninput=render;
-document.querySelectorAll(".filters input").forEach(c=>c.onchange=render);
-
-function openDetail(i){
-location.href="page3.html?id="+i;
-}
-
 }
 
 
 
 // ===== PAGE3 =====
-const params=new URLSearchParams(location.search);
-const id=params.get("id");
+const id=new URLSearchParams(location.search).get("id");
 
-if(id!==null){
+if(id!==null && document.getElementById("mainImg")){
 
 let d=DATA[id];
 
@@ -97,7 +80,6 @@ document.getElementById("desc").textContent=d.desc;
 let thumbs=document.getElementById("thumbs");
 
 if(thumbs){
-
 d.imgs.forEach(src=>{
 let img=document.createElement("img");
 img.src=src;
@@ -109,31 +91,6 @@ p.style.display="flex";
 };
 thumbs.appendChild(img);
 });
-
 }
-
-}
-if(id!==null){
-
-let d=DATA[id];
-
-document.getElementById("title").textContent=d.name;
-document.getElementById("mainImg").src=d.imgs[0];
-document.getElementById("desc").textContent=d.desc;
-
-let thumbs=document.getElementById("thumbs");
-
-d.imgs.forEach(src=>{
-let img=document.createElement("img");
-img.src=src;
-img.onclick=()=>{
-document.getElementById("mainImg").src=src;
-
-let p=document.getElementById("popup");
-document.getElementById("popupImg").src=src;
-p.style.display="flex";
-};
-thumbs.appendChild(img);
-});
 
 }
