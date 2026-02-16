@@ -1,76 +1,67 @@
-function openCategory(cat){
-localStorage.cat=cat;
-location="page2.html";
+function openCategory(c){
+localStorage.cat=c;
+location.href="page2.html";
 }
 
 function goHome(){
-location="index.html";
+location.href="index.html";
 }
 
 function goBack(){
 history.back();
 }
 
-/* DATA SAMPLE BANYAK */
 const DB={
 area:[
-{name:"Crystal City",img:"https://picsum.photos/400/300?11",desc:"Kota kristal megah"},
-{name:"Iron Valley",img:"https://picsum.photos/400/300?12",desc:"Lembah industri tua"},
-{name:"Azure Forest",img:"https://picsum.photos/400/300?13",desc:"Hutan bercahaya biru"},
-{name:"Frost Peak",img:"https://picsum.photos/400/300?14",desc:"Gunung salju abadi"},
-{name:"Golden Desert",img:"https://picsum.photos/400/300?15",desc:"Padang emas luas"},
-{name:"Emerald Lake",img:"https://picsum.photos/400/300?16",desc:"Danau hijau tenang"}
+{name:"Crystal City",img:"https://picsum.photos/400/300?11",text:"Kota kristal besar"},
+{name:"Iron Valley",img:"https://picsum.photos/400/300?12",text:"Lembah mesin tua"},
+{name:"Azure Forest",img:"https://picsum.photos/400/300?13",text:"Hutan biru misterius"}
 ],
-
 character:[
-{name:"Ice Queen",img:"https://picsum.photos/400/300?21",desc:"Ratu es legendaris"},
-{name:"Flame Knight",img:"https://picsum.photos/400/300?22",desc:"Ksatria api"},
-{name:"Wind Archer",img:"https://picsum.photos/400/300?23",desc:"Pemanah angin"}
+{name:"Ice Queen",img:"https://picsum.photos/400/300?21",text:"Ratu es"},
+{name:"Flame Knight",img:"https://picsum.photos/400/300?22",text:"Ksatria api"}
+],
+monster:[
+{name:"Shadow Beast",img:"https://picsum.photos/400/300?31",text:"Monster bayangan"}
 ]
 };
 
-function loadCategory(){
-const cat=localStorage.cat||"area";
-let data=DB[cat]||[];
-render(data);
-window._data=data;
+let current=[];
+
+function loadList(){
+let c=localStorage.cat||"area";
+current=DB[c]||[];
+render(current);
 }
 
 function render(arr){
-let html="";
+let h="";
 arr.forEach(d=>{
-html+=`
+h+=`
 <div class="item" onclick="openDetail('${d.name}')">
 <img src="${d.img}">
 <b>${d.name}</b>
-<p>${d.desc}</p>
+<p>${d.text}</p>
 </div>`;
 });
-document.getElementById("list").innerHTML=html;
+document.getElementById("list").innerHTML=h;
 }
 
-function doSearch(){
+function search(){
 let q=document.getElementById("search").value.toLowerCase();
-let f=_data.filter(d=>d.name.toLowerCase().includes(q));
-render(f);
+render(current.filter(d=>d.name.toLowerCase().includes(q)));
 }
 
-function openDetail(name){
-localStorage.detail=name;
-location="page3.html";
+function openDetail(n){
+localStorage.detail=n;
+location.href="page3.html";
 }
 
 function loadDetail(){
-let name=localStorage.detail;
-let all=[...DB.area,...DB.character];
-let d=all.find(x=>x.name===name);
-
-document.getElementById("big").src=d.img;
-document.getElementById("text").innerText=d.desc+" — lorem ipsum panjang untuk detail halaman.";
-
-let g="";
-for(let i=0;i<4;i++){
-g+=`<img src="${d.img}" onclick="document.getElementById('big').src=this.src">`;
-}
-document.getElementById("gallery").innerHTML=g;
+let n=localStorage.detail;
+let all=[...DB.area,...DB.character,...DB.monster];
+let d=all.find(x=>x.name===n);
+if(!d)return;
+document.getElementById("img").src=d.img;
+document.getElementById("text").innerText=d.text;
 }
