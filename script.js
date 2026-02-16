@@ -1,81 +1,60 @@
 const DATA=[
 
-{
-name:"Aether Knight",
-cat:"warrior",
-desc:"Holy swordsman from the floating kingdom.",
-imgs:[
-"https://picsum.photos/600/400?1",
-"https://picsum.photos/600/400?2",
-"https://picsum.photos/600/400?3"
-]
-},
+{type:"character",name:"Ice Queen",desc:"Frozen monarch",imgs:["https://picsum.photos/600/400?1","https://picsum.photos/600/400?11"]},
+{type:"character",name:"Blade Hero",desc:"Legend swordsman",imgs:["https://picsum.photos/600/400?2"]},
 
-{
-name:"Luna Mage",
-cat:"mage",
-desc:"Moonlight sorceress who bends time.",
-imgs:[
-"https://picsum.photos/600/400?4",
-"https://picsum.photos/600/400?5",
-"https://picsum.photos/600/400?6"
-]
-},
+{type:"area",name:"Crystal City",desc:"Shining capital",imgs:["https://picsum.photos/600/400?3"]},
 
-{
-name:"Sylph Spirit",
-cat:"spirit",
-desc:"Wind fairy born from ancient forest.",
-imgs:[
-"https://picsum.photos/600/400?7",
-"https://picsum.photos/600/400?8",
-"https://picsum.photos/600/400?9"
-]
-},
+{type:"support",name:"Guild Order",desc:"Alliance faction",imgs:["https://picsum.photos/600/400?4"]},
 
-{
-name:"Crimson Samurai",
-cat:"warrior",
-desc:"Ronin wrapped in cursed flames.",
-imgs:[
-"https://picsum.photos/600/400?10",
-"https://picsum.photos/600/400?11"
-]
-},
+{type:"monster",name:"Void Dragon",desc:"Ancient beast",imgs:["https://picsum.photos/600/400?5"]},
 
-{
-name:"Void Witch",
-cat:"mage",
-desc:"Caster who whispers to darkness.",
-imgs:[
-"https://picsum.photos/600/400?12",
-"https://picsum.photos/600/400?13"
-]
-}
+{type:"item",name:"Sun Relic",desc:"Holy artifact",imgs:["https://picsum.photos/600/400?6"]},
+
+{type:"magic",name:"Ice",desc:"Elemental frost magic",imgs:["https://picsum.photos/600/400?7"]}
 
 ];
 
 
-// ---------- PAGE2 LOAD GRID ----------
+// ===== PAGE2 =====
 const grid=document.getElementById("grid");
 
 if(grid){
 
+const params=new URLSearchParams(location.search);
+const cat=params.get("cat");
+
+document.getElementById("title").textContent=(cat||"Archive").toUpperCase();
+
+const searchInput=document.getElementById("search");
+const filters=document.getElementById("filters");
+
 function render(){
 
-let s=document.getElementById("search").value.toLowerCase();
+let s=searchInput.value.toLowerCase();
 
-let checks=[...document.querySelectorAll(".filters input:checked")]
+filters.style.display = s.length>0 ? "block":"none";
+
+let fields=[...document.querySelectorAll(".filters input:checked")]
 .map(c=>c.value);
 
 grid.innerHTML="";
 
 DATA.forEach((d,i)=>{
 
-if(
-d.name.toLowerCase().includes(s) &&
-checks.includes(d.cat)
-){
+if(d.type!==cat) return;
+
+let match=false;
+
+if(!s) match=true;
+else{
+
+if(fields.includes("name") && d.name.toLowerCase().includes(s)) match=true;
+if(fields.includes("desc") && d.desc.toLowerCase().includes(s)) match=true;
+
+}
+
+if(match){
 
 grid.innerHTML+=`
 <div class="card" onclick="openDetail(${i})">
@@ -83,6 +62,7 @@ grid.innerHTML+=`
 <h3>${d.name}</h3>
 <p>${d.desc}</p>
 </div>`;
+
 }
 
 });
@@ -91,7 +71,7 @@ grid.innerHTML+=`
 
 render();
 
-document.getElementById("search").oninput=render;
+searchInput.oninput=render;
 document.querySelectorAll(".filters input").forEach(c=>c.onchange=render);
 
 function openDetail(i){
@@ -101,10 +81,38 @@ location.href="page3.html?id="+i;
 }
 
 
-// ---------- PAGE3 LOAD DETAIL ----------
+
+// ===== PAGE3 =====
 const params=new URLSearchParams(location.search);
 const id=params.get("id");
 
+if(id!==null){
+
+let d=DATA[id];
+
+document.getElementById("title").textContent=d.name;
+document.getElementById("mainImg").src=d.imgs[0];
+document.getElementById("desc").textContent=d.desc;
+
+let thumbs=document.getElementById("thumbs");
+
+if(thumbs){
+
+d.imgs.forEach(src=>{
+let img=document.createElement("img");
+img.src=src;
+img.onclick=()=>{
+document.getElementById("mainImg").src=src;
+let p=document.getElementById("popup");
+document.getElementById("popupImg").src=src;
+p.style.display="flex";
+};
+thumbs.appendChild(img);
+});
+
+}
+
+}
 if(id!==null){
 
 let d=DATA[id];
