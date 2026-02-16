@@ -3,20 +3,19 @@
 body{
 margin:0;
 font-family:system-ui,Segoe UI;
-background:linear-gradient(180deg,#f6efe6,#eadfce);
-color:#3e2f25;
+background:linear-gradient(180deg,#f3e6d6,#e4d2bd);
+color:#4a3728;
 }
 
-/* HEADER */
+/* TITLE */
 .logo{
 text-align:center;
-padding:18px 10px;
-font-weight:700;
-letter-spacing:1px;
+padding:20px 10px;
 font-size:22px;
+font-weight:700;
 }
 
-/* GRID MOBILE */
+/* GRID */
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -26,12 +25,12 @@ padding:14px;
 
 /* CARD */
 .card{
-background:white;
+background:#fffaf4;
 border-radius:16px;
 overflow:hidden;
 text-decoration:none;
 color:inherit;
-box-shadow:0 6px 16px rgba(120,90,60,.15);
+box-shadow:0 6px 14px rgba(120,80,40,.18);
 }
 
 .card img{
@@ -40,71 +39,56 @@ height:110px;
 object-fit:cover;
 }
 
-.card h3{
-margin:8px 10px 0;
-font-size:15px;
-}
+.card h3{margin:8px 10px 0;font-size:15px}
+.card p{margin:4px 10px 10px;font-size:12px;opacity:.75}
 
-.card p{
-margin:4px 10px 10px;
-font-size:12px;
-opacity:.75;
-}
-
-/* SEARCH PANEL */
-.panel{
-padding:12px;
-}
+/* SEARCH */
+.panel{padding:12px}
 
 .panel input{
 width:100%;
 padding:14px;
 border-radius:14px;
 border:none;
+background:white;
 font-size:15px;
-box-shadow:0 3px 10px rgba(0,0,0,.08) inset;
+box-shadow:0 2px 8px rgba(0,0,0,.1) inset;
 }
 
-/* FILTER CHECKBOX */
+/* FILTER */
 .filters{
 display:none;
 margin-top:10px;
 background:white;
 padding:10px;
-border-radius:14px;
-box-shadow:0 6px 14px rgba(0,0,0,.1);
-font-size:14px;
+border-radius:12px;
+box-shadow:0 6px 14px rgba(0,0,0,.12);
 }
 
-/* BUTTON NAV */
+/* NAV BUTTON */
 .back{
 display:block;
 margin:20px auto 30px;
 width:85%;
 text-align:center;
 padding:14px;
-background:white;
+background:#fffaf4;
 border-radius:14px;
 text-decoration:none;
-color:#3e2f25;
+color:#4a3728;
 font-weight:600;
-box-shadow:0 4px 12px rgba(0,0,0,.12);
+box-shadow:0 4px 10px rgba(0,0,0,.15);
 }
 
-/* DETAIL PAGE */
+/* DETAIL */
 .mainImg{
 width:92%;
 margin:10px auto;
 display:block;
-border-radius:18px;
-box-shadow:0 10px 20px rgba(0,0,0,.15);
+border-radius:16px;
 }
 
-.desc{
-padding:0 18px;
-font-size:14px;
-line-height:1.5;
-}
+.desc{padding:0 18px}
 
 .thumbs{
 display:flex;
@@ -115,8 +99,7 @@ overflow-x:auto;
 
 .thumbs img{
 height:80px;
-border-radius:12px;
-cursor:pointer;
+border-radius:10px;
 }
 
 .popup{
@@ -131,5 +114,5 @@ justify-content:center;
 .popup img{
 max-width:90%;
 max-height:90%;
-border-radius:18px;
+border-radius:16px;
 }
