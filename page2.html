@@ -2,22 +2,21 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data</title>
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>List</title>
+<link rel="stylesheet" href="./style.css">
 </head>
 
 <body class="bg">
 
-<div class="topbar">
-<span onclick="goHome()">🏠</span>
-<input id="search" placeholder="Search..." oninput="doSearch()">
+<div class="top">
+<button onclick="goHome()">HOME</button>
+<input id="search" placeholder="Search..." oninput="search()">
 </div>
 
-<div id="list" class="container"></div>
+<div id="list" class="wrap"></div>
 
-<script src="script.js"></script>
-<script>loadCategory()</script>
-
+<script src="./script.js"></script>
+<script>loadList()</script>
 </body>
 </html>
