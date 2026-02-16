@@ -2,29 +2,28 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Gallery</title>
+<title>Archive</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="fantasy">
+<body>
 
-<h1 class="logo">CHARACTER ARCHIVE</h1>
+<h1 id="title" class="logo"></h1>
 
 <div class="panel">
 
-<input id="search" placeholder="Search character...">
+<input id="search" placeholder="Search in this category...">
 
-<div class="filters">
-<label><input type="checkbox" value="warrior" checked> Warrior</label>
-<label><input type="checkbox" value="mage" checked> Mage</label>
-<label><input type="checkbox" value="spirit" checked> Spirit</label>
+<div id="filters" class="filters">
+<label><input type="checkbox" value="name" checked> Name</label>
+<label><input type="checkbox" value="desc" checked> Description</label>
 </div>
 
 </div>
 
 <div id="grid" class="grid"></div>
 
-<a href="index.html" class="back">← Back</a>
+<a href="index.html" class="back">🏠 HOME</a>
 
 <script src="script.js"></script>
 
